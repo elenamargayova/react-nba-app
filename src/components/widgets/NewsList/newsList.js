@@ -7,7 +7,6 @@ import {URL} from '../../../config';
 import styles from './newslist.css';
 import Button from '../Buttons/buttons';
 import CardInfo from '../../widgets/CardInfo/cardInfo';
-import { CLIENT_RENEG_LIMIT } from 'tls';
 
 class NewsList extends Component {
     state={
@@ -37,7 +36,9 @@ class NewsList extends Component {
         axios.get(`${URL}/articles?_start=${start}&_end=${end}`)
         .then(response=>{
             this.setState({
-                items:[...this.state.items,...response.data]
+                items:[...this.state.items,...response.data],
+                start,
+                end
             })
         })
     }
